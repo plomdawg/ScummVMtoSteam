@@ -26,24 +26,28 @@ if not os.path.isdir(root):
     print(f"Input path is not a directory: {root}")
     sys.exit(3)
 
+# Find all subdirectories in the given path.
 for path in os.listdir(root):
-    # Find all subdirectories in the given path.
-    if not os.path.isdir(os.path.join(root, path)):
+    path = os.path.join(root, path)
+
+    # Skip files.
+    if not os.path.isdir(path):
         continue
 
     # Folder name is the game name.
     name = os.path.basename(path)
-    icon = os.path.join(root, f"{path}/icon.png")
-    grid = os.path.join(root, f"{path}/grid.png")
-    hero = os.path.join(root, f"{path}/hero.png")
-    logo = os.path.join(root, f"{path}/logo.png")
+    icon = os.path.join(path, "icon.png")
+    grid = os.path.join(path, "grid.png")
+    hero = os.path.join(path, "hero.png")
+    logo = os.path.join(path, "logo.png")
 
-    # Set the icon if it exists.
-    if os.path.isfile(icon):
+    print(f"Adding shortcut for {name}")
+
+    # Set the icon only if it exists.
+    if not os.path.isfile(icon):
         icon = ""
 
     # Add the shortcut.
-    print(f"Adding shortcut for {name}")
     res = user.add_shortcut(
         name=name,
         exe=SCUMMVM_EXE, 
