@@ -27,14 +27,19 @@ if not os.path.isdir(root):
     sys.exit(3)
 
 for path in os.listdir(root):
+    # Find all subdirectories in the given path.
     if not os.path.isdir(os.path.join(root, path)):
         continue
+
     # Folder name is the game name.
     name = os.path.basename(path)
+    icon = os.path.join(root, f"{path}/icon.png")
+    grid = os.path.join(root, f"{path}/grid.png")
+    hero = os.path.join(root, f"{path}/hero.png")
+    logo = os.path.join(root, f"{path}/logo.png")
 
     # Set the icon if it exists.
-    icon = f"{path}/icon.png"
-    if not os.path.isfile(icon):
+    if os.path.isfile(icon):
         icon = ""
 
     # Add the shortcut.
@@ -55,9 +60,6 @@ for path in os.listdir(root):
         print("  - Something went wrong (name/exe is empty)")
         sys.exit(4)
 
-    grid = f"{path}/grid.png"
-    hero = f"{path}/hero.png"
-    logo = f"{path}/logo.png"
     for shortcut in user.shortcuts:
         if shortcut.name == name:
             if os.path.isfile(grid):
