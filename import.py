@@ -41,7 +41,7 @@ for path in os.listdir(root):
     hero = os.path.join(path, "hero.png")
     logo = os.path.join(path, "logo.png")
 
-    print(f"Adding shortcut for {name}")
+    print(f"Processing Game: {name}")
 
     # Set the icon only if it exists.
     if not os.path.isfile(icon):
@@ -57,7 +57,7 @@ for path in os.listdir(root):
         launch_options=f"--path={os.path.realpath(path)}",
         tags=["ScummVM"])
     if res == 0:
-        print("  - Success")
+        print("  - Added shortcut")
     if res == 1:
         print("  - Shortcut already exists!")
     elif res == 2:
