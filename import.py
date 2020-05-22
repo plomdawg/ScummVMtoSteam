@@ -52,7 +52,7 @@ for path in os.listdir(root):
         name=name,
         exe=SCUMMVM_EXE, 
         start_dir=os.path.dirname(SCUMMVM_EXE),
-        icon=icon, 
+        icon=os.path.realpath(icon), 
         shortcut_path="",
         launch_options=f"--path={os.path.realpath(path)}",
         tags=["ScummVM"])
