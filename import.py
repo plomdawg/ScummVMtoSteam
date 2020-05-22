@@ -26,7 +26,7 @@ if not os.path.isdir(root):
     print(f"Input path is not a directory: {root}")
     sys.exit(3)
 
-for path in os.listdir(path):
+for path in os.listdir(root):
     if not os.path.isdir(os.path.join(root, path)):
         continue
     # Folder name is the game name.
