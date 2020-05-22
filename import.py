@@ -21,12 +21,14 @@ if len(sys.argv) != 2:
     sys.exit(2)
 
 # First argument is the path containing games.
-path = sys.argv[1]
-if not os.path.isdir(path):
-    print(f"Input path is not a directory: {path}")
+root = sys.argv[1]
+if not os.path.isdir(root):
+    print(f"Input path is not a directory: {root}")
     sys.exit(3)
 
-for path in [f[0] for f in os.walk(path)][1:]:
+for path in os.listdir(path):
+    if not os.path.isdir(os.path.join(root, path)):
+        continue
     # Folder name is the game name.
     name = os.path.basename(path)
 
